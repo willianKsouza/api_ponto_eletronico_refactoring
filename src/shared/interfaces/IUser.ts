@@ -1,5 +1,5 @@
 export interface IUser {
-  employee_id?: string;
+  employee_id: string;
   name_employee: string;
   avatar_employee?: string | null;
   function_employee: string;

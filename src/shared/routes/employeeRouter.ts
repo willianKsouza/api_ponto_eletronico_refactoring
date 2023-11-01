@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { createEmployeeController } from "../../useCases/employee/createEmployee/coalescence";
-import { updateEmployeeController } from "../../useCases/employee/updateEmployee/coalescence";
+import { createEmployeeController } from "../../useCases/employee/create/coalescence";
+import { updateEmployeeController } from "../../useCases/employee/update/coalescence";
 
 const employeeRouter = Router()
 
-employeeRouter.post("/",
-  createEmployeeController.create
+employeeRouter.post("/", (req, res) =>
+  createEmployeeController.create(req, res)
 );
-// employeeRouter.put("/:id", (req, res) =>
-//   updateEmployeeController.update(req, res)
-// );
+employeeRouter.put("/:id", (req, res) =>
+  updateEmployeeController.update(req, res)
+);
 // employeeRouter.get("/:id", (req, res) =>
 //   ReadEmployeeController.update(req, res)
 // );

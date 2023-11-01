@@ -7,7 +7,7 @@ class PrismaClientDB {
   static getInstance(): PrismaClient {
     if (!PrismaClientDB.instance) {
         PrismaClientDB.instance = new PrismaClient({
-          // log: ["query", "info", "warn", "error"],
+          log: ["query", "info", "warn", "error"],
         });
     }
     return PrismaClientDB.instance;

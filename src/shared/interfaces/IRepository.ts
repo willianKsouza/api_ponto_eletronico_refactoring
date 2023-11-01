@@ -1,8 +1,7 @@
-import { ICreateEmployee } from "../../useCases/employee/createEmployee/ICreateEmployee";
 import { IUser } from "./IUser";
 
 export interface IRepository {
-  create(data: ICreateEmployee): Promise<IUser | null>;
+  create(data: Omit<IUser, "employee_id">): Promise<IUser | null>;
   findByEmail(email: string): Promise<IUser | null>;
   findOne(id: string): Promise<IUser | null>;
   findAll(): Promise<IUser[] | null>;
