@@ -1,8 +1,8 @@
 import { apiError } from "../../../shared/middlewares/AppError";
-import { IRepository } from "../../../shared/interfaces/IRepository";
+import { IUpdateRepository } from "../../../shared/interfaces/IRepository";
 import { IUser } from "../../../shared/interfaces/IUser";
 export class UpdateEmployeeService {
-  constructor(private employeeRepository: Pick<IRepository, "update">) {}
+  constructor(private employeeRepository: IUpdateRepository) {}
 
   async execute(
     data: Omit<
@@ -11,10 +11,13 @@ export class UpdateEmployeeService {
     >
   ) {
     try {
-      const employee = await this.employeeRepository.update(data.employee_id, data);
+      const employee = await this.employeeRepository.update(
+        data.employee_id,
+        data
+      );
       return employee;
     } catch (error) {
-      throw new apiError("erro", 500);
+      throw new apiError("erro update service", 500);
     }
   }
 }

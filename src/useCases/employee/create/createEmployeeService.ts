@@ -1,13 +1,12 @@
-import { IRepository } from "../../../shared/interfaces/IRepository";
+import { ICreateRepository } from "../../../shared/interfaces/IRepository";
 
 import { apiError } from "../../../shared/middlewares/AppError";
 import { Prisma } from "@prisma/client";
-import { CreateDataDTO } from "../../../shared/utils/createDataDTO";
+
 import { IUser } from "../../../shared/interfaces/IUser";
 export class CreateEmployeeService {
-  constructor(private employeeRepository: Pick<IRepository, "create">) {}
+  constructor(private employeeRepository: ICreateRepository) {}
 
-  @CreateDataDTO()
   async execute(data: Omit<IUser, "employee_id">) {
     try {
       const employee = await this.employeeRepository.create(data);
@@ -16,11 +15,13 @@ export class CreateEmployeeService {
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === "P2002") {
-          throw new apiError("usuario ja existe", 400);
+          throw JSON.stringify({
+            erro: "usuario ja existe",
+            statusCode: 400,
+          });
         }
       }
-
-      throw new apiError(error.message, 500);
+      throw new apiError("erro interno, create service", 500);
     }
   }
 }

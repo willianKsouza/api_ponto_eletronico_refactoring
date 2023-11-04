@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createEmployeeController } from "../../useCases/employee/create/coalescence";
 import { updateEmployeeController } from "../../useCases/employee/update/coalescence";
-
+import { deleteEmployeeController } from "../../useCases/employee/delete/coalescence";
 const employeeRouter = Router()
 
 employeeRouter.post("/", (req, res) =>
@@ -10,14 +10,8 @@ employeeRouter.post("/", (req, res) =>
 employeeRouter.put("/:id", (req, res) =>
   updateEmployeeController.update(req, res)
 );
-// employeeRouter.get("/:id", (req, res) =>
-//   ReadEmployeeController.update(req, res)
-// );
-// employeeRouter.delete("/:id", (req, res) =>
-//   DeleteEmployeeController.update(req, res)
-// );
-// employeeRouter.get("/:id", (req, res) =>
-//   ShowEmployeeController.update(req, res)
-// );
+employeeRouter.delete("/", (req, res) =>
+  deleteEmployeeController.delete(req, res)
+);
 
 export {employeeRouter}

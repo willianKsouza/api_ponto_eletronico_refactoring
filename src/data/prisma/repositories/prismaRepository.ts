@@ -1,17 +1,17 @@
 import { IUser } from "../../../shared/interfaces/IUser";
-import { IRepository } from "../../../shared/interfaces/IRepository";
+import { ICreateRepository, IDeleteRepository, IFindAllRepository, IFindByEmailRepository, IFindOneRepository, IUpdateRepository } from "../../../shared/interfaces/IRepository";
 import { prisma } from "../connectDb";
 
 
 
-export class CreateRepository implements Pick<IRepository, "create"> {
+export class CreateRepository implements ICreateRepository {
   async create(param: Omit<IUser, "employee_id">): Promise<IUser | null> {
     const employee = await prisma().employees.create({ data: param });
     return employee;
   }
 }
 
-export class UpdateRepository implements Pick<IRepository, "update"> {
+export class UpdateRepository implements IUpdateRepository {
   async update(id: string, param: Partial<IUser>): Promise<IUser | null> {
     const employee = await prisma().employees.update({
       where: {
@@ -25,7 +25,7 @@ export class UpdateRepository implements Pick<IRepository, "update"> {
 }
 
 
-export class FindAllRepository implements Pick<IRepository, "findAll"> {
+export class FindAllRepository implements IFindAllRepository {
   async findAll(): Promise<IUser[] | null> {
     const employee = await prisma().employees.findMany();
 
@@ -34,7 +34,7 @@ export class FindAllRepository implements Pick<IRepository, "findAll"> {
 }
 
 
-export class FindOneRepository implements Pick<IRepository, "findOne"> {
+export class FindOneRepository implements IFindOneRepository {
   async findOne(param: string): Promise<IUser | null> {
     const employee = await prisma().employees.findUnique({
       where: {
@@ -47,7 +47,7 @@ export class FindOneRepository implements Pick<IRepository, "findOne"> {
 }
 
 
-export class FindByEmailRepository implements Pick<IRepository, "findByEmail"> {
+export class FindByEmailRepository implements IFindByEmailRepository {
   async findByEmail(email: string): Promise<IUser | null> {
     const employee = await prisma().employees.findUnique({
       where: {
@@ -58,7 +58,7 @@ export class FindByEmailRepository implements Pick<IRepository, "findByEmail"> {
   }
 }
 
-export class DeleteRepository implements Pick<IRepository, "delete"> {
+export class DeleteRepository implements IDeleteRepository {
   async delete(param: string): Promise<IUser | null> {
     const employee = await prisma().employees.delete({
       where: {
