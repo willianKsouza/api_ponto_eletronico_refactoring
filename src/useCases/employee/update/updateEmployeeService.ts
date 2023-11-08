@@ -1,21 +1,41 @@
 import { apiError } from "../../../shared/middlewares/AppError";
-import { IUpdateRepository } from "../../../shared/interfaces/IRepository";
-import { IUser } from "../../../shared/interfaces/IUser";
-export class UpdateEmployeeService {
-  constructor(private employeeRepository: IUpdateRepository) {}
+import {
+  IFindOneRepository,
+  IUpdateRepository,
+} from "../../../shared/interfaces/IRepository";
+import { UpdateDataValidation } from "../../../shared/utils/updateDataValidation";
 
-  async execute(
-    data: Omit<
-      IUser,
-      "createdAt" | "updatedAt" | "avatar_employee?" | "deleted_at"
-    >
-  ) {
+interface IUpdateEmployee {
+  queryId: string;
+  name_employee?: string;
+  function_employee?: string;
+  workload_employee?: number;
+  email?: string;
+}
+
+export class UpdateEmployeeService {
+  constructor(
+    private employeeRepository: IUpdateRepository,
+    private employee: IFindOneRepository
+  ) {}
+
+  @UpdateDataValidation()
+  async execute(data: IUpdateEmployee) {
     try {
-      const employee = await this.employeeRepository.update(
-        data.employee_id,
-        data
-      );
+      const { email, function_employee, name_employee, workload_employee } =
+        data;
+      const employeeExists = await this.employee.findOne(data.queryId);
+      if (employeeExists) {
+      const employee = await this.employeeRepository.update(data.queryId, {
+        email,
+        function_employee,
+        name_employee,
+        workload_employee,
+      });
+
       return employee;
+      }
+      throw new apiError("erro ao atualizar", 400);
     } catch (error) {
       throw new apiError("erro update service", 500);
     }

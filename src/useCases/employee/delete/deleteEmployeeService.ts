@@ -1,6 +1,5 @@
 import { apiError } from "../../../shared/middlewares/AppError";
 import { IDeleteRepository } from "../../../shared/interfaces/IRepository";
-import prisma from "../create/test/clientPrisma";
 import { Prisma } from "@prisma/client";
 export class DeleteEmployeeService {
   constructor(

@@ -1,6 +1,6 @@
 
 import { CreateRepository } from "../../../data/prisma/repositories/prismaRepository";
-import { ControllerCreateEmployee } from "./ControllerCreateEmployee";
+import { ControllerCreateEmployee } from "./controllerCreateEmployee";
 import { CreateEmployeeService } from "./createEmployeeService";
 
 const createRepository = new CreateRepository();

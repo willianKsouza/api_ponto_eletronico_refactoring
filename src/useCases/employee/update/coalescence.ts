@@ -1,9 +1,16 @@
-import { UpdateRepository } from "../../../data/prisma/repositories/prismaRepository";
-import { ControllerUpdateEmployee } from "./ControllerUpdateEmpoyee";
+import {
+  UpdateRepository,
+  FindOneRepository,
+} from "../../../data/prisma/repositories/prismaRepository";
+import { ControllerUpdateEmployee } from "./controllerUpdateEmpoyee";
 import { UpdateEmployeeService } from "./updateEmployeeService";
 
 const updateRepository = new UpdateRepository();
-const updateEmployeeService = new UpdateEmployeeService(updateRepository);
+const findOneRepository = new FindOneRepository();
+const updateEmployeeService = new UpdateEmployeeService(
+  updateRepository,
+  findOneRepository
+);
 const updateEmployeeController = new ControllerUpdateEmployee(
   updateEmployeeService
 );

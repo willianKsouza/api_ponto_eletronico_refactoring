@@ -4,9 +4,10 @@ import { apiError } from "../../../shared/middlewares/AppError";
 import { Prisma } from "@prisma/client";
 
 import { IUser } from "../../../shared/interfaces/IUser";
+import { CreateDataValidation } from "../../../shared/utils/createDataValidation";
 export class CreateEmployeeService {
   constructor(private employeeRepository: ICreateRepository) {}
-
+  @CreateDataValidation()
   async execute(data: Omit<IUser, "employee_id">) {
     try {
       const employee = await this.employeeRepository.create(data);

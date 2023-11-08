@@ -6,6 +6,12 @@ export interface ICreateRepository {
 export interface IFindByEmailRepository {
   findByEmail(email: string): Promise<IUser | null>;
 }
+export interface IFindCredentialsRepository {
+  findOne({
+    email,
+    password,
+  }: Pick<IUser, "email" | "password">): Promise<IUser | null>;
+}
 export interface IFindOneRepository {
   findOne(id: string): Promise<IUser | null>;
 }

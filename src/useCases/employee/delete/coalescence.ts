@@ -1,5 +1,5 @@
 import { DeleteRepository } from "../../../data/prisma/repositories/prismaRepository";
-import { ControllerDeleteEmployee } from "./ControllerDeleteEmpoyee";
+import { ControllerDeleteEmployee } from "./controllerDeleteEmpoyee";
 import { DeleteEmployeeService} from "./deleteEmployeeService";
 
 const deleteRepository = new DeleteRepository();

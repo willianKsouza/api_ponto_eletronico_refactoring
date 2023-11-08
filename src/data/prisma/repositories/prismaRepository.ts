@@ -1,5 +1,13 @@
 import { IUser } from "../../../shared/interfaces/IUser";
-import { ICreateRepository, IDeleteRepository, IFindAllRepository, IFindByEmailRepository, IFindOneRepository, IUpdateRepository } from "../../../shared/interfaces/IRepository";
+import {
+  ICreateRepository,
+  IDeleteRepository,
+  IFindAllRepository,
+  IFindByEmailRepository,
+  IUpdateRepository,
+  IFindCredentialsRepository,
+  IFindOneRepository,
+} from "../../../shared/interfaces/IRepository";
 import { prisma } from "../connectDb";
 
 
@@ -17,7 +25,6 @@ export class UpdateRepository implements IUpdateRepository {
       where: {
         employee_id: id,
       },
-
       data: param,
     });
     return employee;
@@ -34,14 +41,28 @@ export class FindAllRepository implements IFindAllRepository {
 }
 
 
-export class FindOneRepository implements IFindOneRepository {
-  async findOne(param: string): Promise<IUser | null> {
+export class FindCredentialsRepository implements IFindCredentialsRepository {
+  async findOne({
+    email,
+    password,
+  }: Pick<IUser, "email" | "password">): Promise<IUser | null> {
     const employee = await prisma().employees.findUnique({
       where: {
-        employee_id: param,
+        email: email,
+        password: password,
       },
     });
 
+    return employee;
+  }
+}
+export class FindOneRepository implements IFindOneRepository {
+  async findOne(id: string): Promise<IUser | null> {
+    const employee = await prisma().employees.findUnique({
+      where: {
+        employee_id:id
+      }
+    })
     return employee;
   }
 }
