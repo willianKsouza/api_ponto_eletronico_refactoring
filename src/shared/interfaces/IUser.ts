@@ -3,6 +3,7 @@ export interface IUser {
   name_employee: string;
   avatar_employee?: string | null;
   avatar_path?: string | null;
+  avatar_file_name?: string | null;
   function_employee: string;
   workload_employee: number;
   email: string;

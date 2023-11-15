@@ -12,6 +12,7 @@ model Employees {
   name_employee     String      @default("")
   avatar_employee   String?     @default("")
   avatar_path       String?     @default("")
+  avatar_file_name  String?     @default("")
   function_employee String      @default("")
   workload_employee Int
   email             String      @unique

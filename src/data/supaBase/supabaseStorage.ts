@@ -62,11 +62,11 @@ export class GetAvatarUrl implements IGetAvatarUrl {
 }
 
 export class DeleteFileStorage implements IDeleteFile {
-  async deleteFileStorage({filename}: Express.Multer.File) {
+  async deleteFileStorage(fileName: string) {
     try {
       const { data, error } = await supabase.storage
         .from("avatars")
-        .remove([filename]);
+        .remove([fileName]);
       if (error) {
         throw new apiError(error.message, 400);
       }

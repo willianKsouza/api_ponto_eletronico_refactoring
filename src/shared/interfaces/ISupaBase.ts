@@ -8,5 +8,5 @@ export interface IGetAvatarUrl {
 }
 
 export interface IDeleteFile {
-  deleteFileStorage(file: Express.Multer.File): any
+  deleteFileStorage(file: string): any
 }
