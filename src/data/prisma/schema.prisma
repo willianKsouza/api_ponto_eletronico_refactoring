@@ -11,6 +11,7 @@ model Employees {
   employee_id       String      @id @default(uuid())
   name_employee     String      @default("")
   avatar_employee   String?     @default("")
+  avatar_path       String?     @default("")
   function_employee String      @default("")
   workload_employee Int
   email             String      @unique

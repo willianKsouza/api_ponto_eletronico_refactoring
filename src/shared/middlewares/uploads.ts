@@ -4,7 +4,6 @@ import crypto from "crypto";
 import { Request } from "express";
 
 const folder = path.resolve(__dirname, "..", "..", "..", "uploads");
-console.log(folder);
 
 const upload = multer({
   storage: multer.diskStorage({

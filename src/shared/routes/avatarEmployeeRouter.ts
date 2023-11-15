@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { controllerAvatarEmployee } from "../../useCases/avatarEmployee/coalescence";
+import { controllerAvatarEmployee } from "../../useCases/uploadAvatar/coalescence";
 import { upload } from "../middlewares/uploads";
 
 const avatarRouter = Router();
 
-avatarRouter.post("/", upload.single("avatar"), (req, res) =>
+avatarRouter.post("/:id", upload.single("avatar"), (req, res) =>
   controllerAvatarEmployee.uploadFile(req, res)
 );
 

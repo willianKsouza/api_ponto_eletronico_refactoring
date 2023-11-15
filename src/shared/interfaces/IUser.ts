@@ -2,6 +2,7 @@ export interface IUser {
   employee_id: string;
   name_employee: string;
   avatar_employee?: string | null;
+  avatar_path?: string | null;
   function_employee: string;
   workload_employee: number;
   email: string;
