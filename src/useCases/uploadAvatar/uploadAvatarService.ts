@@ -1,3 +1,4 @@
+
 import {
   IFindOneRepository,
   IUpdateRepository,
@@ -17,6 +18,7 @@ export class UploadAvatarService {
     private DeleteFileStorage: IDeleteFile
   ) {}
   async execute(id: string, objFile: Express.Multer.File) {
+    
     const employee = await this.employee.findOne(id);
     if (employee && employee.avatar_file_name) {
       const saveCloud = await this.saveCloudStorage.uploadFile(objFile);
@@ -25,9 +27,6 @@ export class UploadAvatarService {
       const deletedFile = await this.DeleteFileStorage.deleteFileStorage(
         employee.avatar_file_name
       );
-
-      deleteFileServer(employee.avatar_path as string);
-
       await this.UpdateEmployee.update(id, {
         avatar_employee: getUrl.publicUrl,
         avatar_file_name: objFile.filename,
