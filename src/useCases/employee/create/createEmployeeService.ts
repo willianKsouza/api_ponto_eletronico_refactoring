@@ -1,4 +1,4 @@
-import { ICreateRepository } from "../../../shared/interfaces/IRepository";
+import { ICreateRepository } from "../../../shared/interfaces/IEmployeeRepository";
 
 import { apiError } from "../../../shared/middlewares/AppError";
 import { Prisma } from "@prisma/client";

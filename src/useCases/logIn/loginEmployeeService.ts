@@ -1,4 +1,4 @@
-import { IFindCredentialsRepository } from "../../shared/interfaces/IRepository";
+import { IFindCredentialsRepository } from "../../shared/interfaces/IEmployeeRepository";
 import { IUser } from "../../shared/interfaces/IUser";
 import { apiError } from "../../shared/middlewares/AppError";
 import { sign } from "jsonwebtoken";

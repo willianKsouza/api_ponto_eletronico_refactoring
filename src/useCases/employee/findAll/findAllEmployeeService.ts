@@ -1,5 +1,5 @@
 import { apiError } from "../../../shared/middlewares/AppError";
-import { IFindAllRepository } from "../../../shared/interfaces/IRepository";
+import { IFindAllRepository } from "../../../shared/interfaces/IEmployeeRepository";
 export class FindAllEmployeeService {
   constructor(
     private employeeRepository: IFindAllRepository,

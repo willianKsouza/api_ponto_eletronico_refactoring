@@ -1,4 +1,4 @@
-import { FindAllRepository } from "../../../data/prisma/repositories/prismaRepository";
+import { FindAllRepository } from "../../../data/prisma/repositories/userRepository";
 import { ControllerFindAllEmployee } from "./controllerFindAllEmpoyee";
 import { FindAllEmployeeService} from "./findAllEmployeeService";
 

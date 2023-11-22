@@ -2,7 +2,7 @@
 import {
   IFindOneRepository,
   IUpdateRepository,
-} from "../../shared/interfaces/IRepository";
+} from "../../shared/interfaces/IEmployeeRepository";
 import {
   IDeleteFile,
   IGetAvatarUrl,

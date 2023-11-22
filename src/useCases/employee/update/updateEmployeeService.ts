@@ -2,7 +2,7 @@ import { apiError } from "../../../shared/middlewares/AppError";
 import {
   IFindOneRepository,
   IUpdateRepository,
-} from "../../../shared/interfaces/IRepository";
+} from "../../../shared/interfaces/IEmployeeRepository";
 import { UpdateDataValidation } from "../../../shared/utils/updateDataValidation";
 
 interface IUpdateEmployee {

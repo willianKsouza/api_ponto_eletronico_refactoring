@@ -7,7 +7,7 @@ import {
   IUpdateRepository,
   IFindCredentialsRepository,
   IFindOneRepository,
-} from "../../../shared/interfaces/IRepository";
+} from "../../../shared/interfaces/IEmployeeRepository";
 import { prisma } from "../connectDb";
 
 

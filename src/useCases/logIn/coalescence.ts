@@ -1,4 +1,4 @@
-import { FindCredentialsRepository } from "../../data/prisma/repositories/prismaRepository";
+import { FindCredentialsRepository } from "../../data/prisma/repositories/userRepository";
 import { ControllerLoginEmployee } from "./controllerLoginEmployee";
 import { LoginEmployeeService } from "./loginEmployeeService";
 

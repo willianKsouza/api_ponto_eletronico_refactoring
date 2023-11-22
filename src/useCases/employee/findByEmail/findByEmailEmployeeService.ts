@@ -1,5 +1,5 @@
 import { apiError } from "../../../shared/middlewares/AppError";
-import { IFindByEmailRepository } from "../../../shared/interfaces/IRepository";
+import { IFindByEmailRepository } from "../../../shared/interfaces/IEmployeeRepository";
 export class FindByEmailEmployeeService {
   constructor(private employeeRepository: IFindByEmailRepository) {}
 

@@ -1,5 +1,5 @@
 
-import { CreateRepository } from "../../../data/prisma/repositories/prismaRepository";
+import { CreateRepository } from "../../../data/prisma/repositories/userRepository";
 import { ControllerCreateEmployee } from "./controllerCreateEmployee";
 import { CreateEmployeeService } from "./createEmployeeService";
 

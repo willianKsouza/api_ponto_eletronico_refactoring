@@ -1,7 +1,7 @@
 import { DeleteFileStorage, GetAvatarUrl, UploadFile } from "../../data/supaBase/supabaseStorage";
 import { UploadAvatarService } from "./uploadAvatarService";
 import { ControllerUploadAvatar } from "./controllerUploadAvatar";
-import { FindOneRepository, UpdateRepository } from "../../data/prisma/repositories/prismaRepository";
+import { FindOneRepository, UpdateRepository } from "../../data/prisma/repositories/userRepository";
 
 const uploadFile = new UploadFile();
 const getAvatarUrl = new GetAvatarUrl()

@@ -1,4 +1,4 @@
-import { FindByEmailRepository } from "../../../data/prisma/repositories/prismaRepository";
+import { FindByEmailRepository } from "../../../data/prisma/repositories/userRepository";
 import { ControllerFindByEmailEmployee } from "./ControllerFindByEmailEmpoyee";
 import { FindByEmailEmployeeService } from "./findByEmailEmployeeService";
 

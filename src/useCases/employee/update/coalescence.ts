@@ -1,7 +1,7 @@
 import {
   UpdateRepository,
   FindOneRepository,
-} from "../../../data/prisma/repositories/prismaRepository";
+} from "../../../data/prisma/repositories/userRepository";
 import { ControllerUpdateEmployee } from "./controllerUpdateEmpoyee";
 import { UpdateEmployeeService } from "./updateEmployeeService";
 

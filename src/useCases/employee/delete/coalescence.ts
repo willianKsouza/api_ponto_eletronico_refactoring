@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../../../data/prisma/repositories/prismaRepository";
+import { DeleteRepository } from "../../../data/prisma/repositories/userRepository";
 import { ControllerDeleteEmployee } from "./controllerDeleteEmpoyee";
 import { DeleteEmployeeService} from "./deleteEmployeeService";
 
