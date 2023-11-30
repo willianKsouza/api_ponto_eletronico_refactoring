@@ -12,6 +12,8 @@ export class ControllerLoginEmployee {
       });
       return res.status(201).json({ data: loginEmployee });
     } catch (error) {
+      console.log(error);
+      
       return res.status(error.statusCode).json({ data: error.message });
     }
   }

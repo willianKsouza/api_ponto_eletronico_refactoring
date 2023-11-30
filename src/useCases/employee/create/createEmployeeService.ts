@@ -1,5 +1,5 @@
 import { ICreateRepository } from "../../../shared/interfaces/IEmployeeRepository";
-
+import { hashSync } from "bcrypt";
 import { apiError } from "../../../shared/middlewares/AppError";
 import { Prisma } from "@prisma/client";
 
@@ -9,8 +9,13 @@ export class CreateEmployeeService {
   constructor(private employeeRepository: ICreateRepository) {}
   @CreateDataValidation()
   async execute(data: Omit<IUser, "employee_id">) {
+    const saltRounds = 10;
+    const hash = hashSync(data.password, saltRounds);
     try {
-      const employee = await this.employeeRepository.create(data);
+      const employee = await this.employeeRepository.create({
+        ...data,
+        password: hash,
+      });
 
       return employee;
     } catch (error) {
