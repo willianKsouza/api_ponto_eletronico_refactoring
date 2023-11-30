@@ -18,7 +18,6 @@ export class TimeSheetService {
     private timeSheetCreate: ICreateTimeSheetRepository
   ) {}
   async execute(data: IDataMark) {
-    const timeSheet = await this.timeSheet.findOne(data.time_sheet_id);
     const {
       current_time_stamp,
       time_sheet_id,
@@ -26,15 +25,20 @@ export class TimeSheetService {
       type_marking,
       work_load,
     } = data;
-    if (timeSheet) {
+
+    const sheetID = time_sheet_id ?? '0';
+    const timeSheet = await this.timeSheet.findOne(sheetID);
+
+    
+    if (timeSheet && time_sheet_id) {
       switch (type_marking) {
         case "launch_in":
           if (!timeSheet.launch_in) {
             try {
-              await this.timeSheetUpdate.update(time_sheet_id, {
+             const employeeTimeSheet = await this.timeSheetUpdate.update(time_sheet_id, {
                 launch_in: current_time_stamp,
               });
-              return { mark: "ok" };
+              return employeeTimeSheet;
             } catch (error) {
               return new apiError(error.message, 400);
             }
@@ -42,11 +46,16 @@ export class TimeSheetService {
         case "launch_out":
           if (!timeSheet.launch_out) {
             try {
-              await this.timeSheetUpdate.update(time_sheet_id, {
-                launch_out: current_time_stamp,
-              });
-              return { mark: "ok" };
+              const employeeTimeSheet = await this.timeSheetUpdate.update(
+                time_sheet_id,
+                {
+                  launch_out: current_time_stamp,
+                }
+              );
+              return employeeTimeSheet;
             } catch (error) {
+              
+              
               return new apiError(error.message, 400);
             }
           }
@@ -54,13 +63,16 @@ export class TimeSheetService {
           if (!timeSheet.out_time) {
             try {
               const results = calcOfHours(timeSheet);
-              await this.timeSheetUpdate.update(time_sheet_id, {
-                out_time: current_time_stamp,
-                hours_worked: results.hoursWorked,
-                owed_hours: results.owedHours,
-                overtime: results.overTime,
-              });
-              return { mark: "ok" };
+             const employeeTimeSheet = await this.timeSheetUpdate.update(
+               time_sheet_id,
+               {
+                 out_time: current_time_stamp,
+                 hours_worked: results.hoursWorked,
+                 owed_hours: results.owedHours,
+                 overtime: results.overTime,
+               }
+             );
+              return employeeTimeSheet;
             } catch (error) {
               return new apiError(error.message, 400);
             }
@@ -74,6 +86,7 @@ export class TimeSheetService {
           in_time: current_time_stamp,
         });
         return employeeTimeSheet;
+      
       } catch (error) {
         return new apiError(error.messagem, 400);
       }

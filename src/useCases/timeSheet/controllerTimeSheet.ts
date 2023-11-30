@@ -13,13 +13,14 @@ export class ControllerTimeSheet {
     } = req.body;
       
      try {
-         const timeSheetService = this.sheetService.execute({
+         const timeSheetService = await this.sheetService.execute({
            current_time_stamp,
            employee_id,
            time_sheet_id,
            type_marking,
            work_load,
          });
+
          return res.status(200).json({ data: timeSheetService });
      } catch (error) {
         return res.status(error.statusCode).json({ data: error.message });

@@ -3,7 +3,6 @@ import { createEmployeeController } from "../../useCases/employee/create/coalesc
 import { updateEmployeeController } from "../../useCases/employee/update/coalescence";
 import { deleteEmployeeController } from "../../useCases/employee/delete/coalescence";
 import { findAllEmployeeController } from "../../useCases/employee/findAll/coalescence";
-import { findByEmailEmployeeController } from "../../useCases/employee/findByEmail/coalescence";
 import { isAuthJWT } from "../middlewares/isAuthJWT";
 
 
@@ -21,9 +20,7 @@ employeeRouter.delete("/", (req, res) =>
 employeeRouter.get("/", (req, res) =>
   findAllEmployeeController.findAll(req, res)
 );
-employeeRouter.get("/:id", (req, res) =>
-  findByEmailEmployeeController.findByEmail(req, res)
-);
+
 
 
 export {employeeRouter}

@@ -5,7 +5,8 @@ export class FindByEmailEmployeeService {
 
   async execute(email: string) {
     try {
-      const employee = await this.employeeRepository.findByEmail(email);
+      const employee =
+        (await this.employeeRepository.findByEmail(email));
       return employee;
     } catch (error) {
       throw new apiError("erro interno find service email", 500);
