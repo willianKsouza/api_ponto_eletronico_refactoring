@@ -7,7 +7,6 @@ export class LoginEmployeeService {
   constructor(private employee: IFindByEmailRepository) {}
   async execute({ email, password }: Pick<IUser, "email" | "password">) {
     const employeeCredentials = await this.employee.findByEmail(email)
-     console.log(employeeCredentials);
     if (!employeeCredentials) {
       throw new apiError("email incorreto", 404);
     }
@@ -16,14 +15,13 @@ export class LoginEmployeeService {
       password,
       employeeCredentials.password
     );
-      console.log(compareHash);
       
     if (compareHash) {
       const token = sign(
         { user: JSON.stringify(employeeCredentials) },
         process.env.SECRET as string,
         {
-          expiresIn: 300,
+          expiresIn: 900,
         }
       );
       return {

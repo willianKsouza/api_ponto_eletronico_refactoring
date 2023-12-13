@@ -26,6 +26,8 @@ export class ControllerCreateEmployee {
       
       return res.status(201).json({ data: Employee });
     } catch (error) {
+
+      
       return res.status(error.statusCode).json({ data: error.message });
     }
   }
