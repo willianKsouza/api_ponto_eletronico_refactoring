@@ -4,6 +4,9 @@ import { loginRouter } from "./loginRouter";
 import { avatarRouter } from "./avatarEmployeeRouter";
 import { timeSheetRouter } from "./timeSheetRouter";
 import { searchEmployee } from "./searchEmployee";
+// import { sendEmailRouter } from "./sendEmailRouter";
+import { passwordRouter } from "./passwordRouter";
+
 
 const routes = Router()
 
@@ -13,6 +16,8 @@ routes.use("/searchemployee", searchEmployee)
 routes.use("/login", loginRouter)
 routes.use("/avatar", avatarRouter);
 routes.use("/timesheet", timeSheetRouter);
+// routes.use("/sendemail", sendEmailRouter);
+routes.use("/password", passwordRouter);
 
 
 export { routes };

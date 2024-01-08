@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { findByEmailEmployeeController } from "../../useCases/employee/findByEmail/coalescence";
+import { findByEmailEmployeeController } from "../../useCases/employee/findByEmail/injection";
 
 
 const searchEmployee = Router();

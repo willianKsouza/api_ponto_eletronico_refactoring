@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginEmployeeController } from "../../useCases/logIn/coalescence";
+import { loginEmployeeController } from "../../useCases/logIn/injection";
 
 const loginRouter = Router();
 

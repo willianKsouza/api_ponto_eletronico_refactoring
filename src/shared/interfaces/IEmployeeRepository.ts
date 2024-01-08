@@ -1,4 +1,5 @@
 import { IUser } from "./IUser";
+import { IUserToken } from "./IuserToken";
 
 export interface ICreateRepository {
   create(data: Omit<IUser, "employee_id">): Promise<IUser | null>;
@@ -23,4 +24,11 @@ export interface IUpdateRepository {
 }
 export interface IDeleteRepository {
   delete(id: string): Promise<IUser | null>;
+}
+
+export interface IFindByTokenRepository {
+  findByToken(Token: string): Promise<IUserToken | null>;
+}
+export interface ICreateUserTokenRepository {
+  createUserToken(employee_id: string): Promise<IUserToken | null>;
 }

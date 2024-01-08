@@ -4,6 +4,7 @@ CREATE TABLE "Employees" (
     "name_employee" TEXT NOT NULL DEFAULT '',
     "avatar_employee" TEXT DEFAULT '',
     "avatar_path" TEXT DEFAULT '',
+    "avatar_file_name" TEXT DEFAULT '',
     "function_employee" TEXT NOT NULL DEFAULT '',
     "workload_employee" INTEGER NOT NULL,
     "email" TEXT NOT NULL,
@@ -31,8 +32,21 @@ CREATE TABLE "Timesheet" (
     CONSTRAINT "Timesheet_pkey" PRIMARY KEY ("time_sheet_id")
 );
 
+-- CreateTable
+CREATE TABLE "UserToken" (
+    "user_token_id" TEXT NOT NULL,
+    "employee_id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "UserToken_pkey" PRIMARY KEY ("user_token_id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Employees_email_key" ON "Employees"("email");
 
 -- AddForeignKey
 ALTER TABLE "Timesheet" ADD CONSTRAINT "Timesheet_employee_id_fkey" FOREIGN KEY ("employee_id") REFERENCES "Employees"("employee_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserToken" ADD CONSTRAINT "UserToken_employee_id_fkey" FOREIGN KEY ("employee_id") REFERENCES "Employees"("employee_id") ON DELETE RESTRICT ON UPDATE CASCADE;

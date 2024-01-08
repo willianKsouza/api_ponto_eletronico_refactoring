@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { controllerAvatarEmployee } from "../../useCases/uploadAvatar/coalescence";
+import { controllerAvatarEmployee } from "../../useCases/uploadAvatar/injection";
 import { upload } from "../middlewares/uploads";
 
 const avatarRouter = Router();

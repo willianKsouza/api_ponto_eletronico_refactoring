@@ -7,9 +7,11 @@ import {
   IUpdateRepository,
   IFindCredentialsRepository,
   IFindOneRepository,
+  IFindByTokenRepository,
+  ICreateUserTokenRepository,
 } from "../../../shared/interfaces/IEmployeeRepository";
 import { prisma } from "../connectDb";
-
+import { IUserToken } from "../../../shared/interfaces/IuserToken";
 
 
 export class CreateRepository implements ICreateRepository {
@@ -31,7 +33,6 @@ export class UpdateRepository implements IUpdateRepository {
   }
 }
 
-
 export class FindAllRepository implements IFindAllRepository {
   async findAll(): Promise<IUser[] | null> {
     const employee = await prisma().employees.findMany();
@@ -39,7 +40,6 @@ export class FindAllRepository implements IFindAllRepository {
     return employee;
   }
 }
-
 
 export class FindCredentialsRepository implements IFindCredentialsRepository {
   async findOne({
@@ -60,13 +60,12 @@ export class FindOneRepository implements IFindOneRepository {
   async findOne(id: string): Promise<IUser | null> {
     const employee = await prisma().employees.findUnique({
       where: {
-        employee_id:id
-      }
-    })
+        employee_id: id,
+      },
+    });
     return employee;
   }
 }
-
 
 export class FindByEmailRepository implements IFindByEmailRepository {
   async findByEmail(email: string): Promise<IUser | null> {
@@ -87,5 +86,26 @@ export class DeleteRepository implements IDeleteRepository {
       },
     });
     return employee;
+  }
+}
+
+export class FindByTokenRepository implements IFindByTokenRepository {
+  async findByToken(token: string): Promise<IUserToken | null> {
+
+    const userToken = await prisma().userToken.findFirst({
+      where: {
+        token:token,
+      },
+    });
+    return userToken;
+  }
+}
+
+export class CreateUserToken implements ICreateUserTokenRepository {
+  async createUserToken(employee_id: string): Promise<IUserToken | null> {
+    const userToken = await prisma().userToken.create({
+      data: { employee_id },
+    });
+    return userToken;
   }
 }

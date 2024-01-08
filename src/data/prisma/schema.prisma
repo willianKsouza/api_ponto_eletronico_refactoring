@@ -21,6 +21,7 @@ model Employees {
   updatedAt         DateTime    @updatedAt
   deleted_at        DateTime?
   timesheets        Timesheet[]
+  user_token        UserToken[]
 }
 
 model Timesheet {
@@ -34,5 +35,13 @@ model Timesheet {
   hours_worked  Int?
   overtime      Int?
   employee_id   String
+  employee      Employees @relation(fields: [employee_id], references: [employee_id])
+}
+
+model UserToken {
+  user_token_id String    @id @default(uuid())
+  employee_id   String
+  token         String    @default(uuid())
+  createdAt     DateTime  @default(now())
   employee      Employees @relation(fields: [employee_id], references: [employee_id])
 }

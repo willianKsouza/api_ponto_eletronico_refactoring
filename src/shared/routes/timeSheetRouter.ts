@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { controllerTimeSheet } from "../../useCases/timeSheet/coalescence";
+import { controllerTimeSheet } from "../../useCases/timeSheet/injection";
 
 
 const timeSheetRouter = Router();
