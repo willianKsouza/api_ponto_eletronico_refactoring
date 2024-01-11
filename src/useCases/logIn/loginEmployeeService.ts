@@ -29,7 +29,7 @@ export class LoginEmployeeService {
         token,
       };
     } else {
-      throw new apiError("email incorreto", 404);
+      throw new apiError("senha incorreta", 404);
     }
   }
 }
