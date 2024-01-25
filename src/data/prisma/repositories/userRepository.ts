@@ -13,7 +13,6 @@ import {
 import { prisma } from "../connectDb";
 import { IUserToken } from "../../../shared/interfaces/IuserToken";
 
-
 export class CreateRepository implements ICreateRepository {
   async create(param: Omit<IUser, "employee_id">): Promise<IUser | null> {
     const employee = await prisma().employees.create({ data: param });
@@ -79,10 +78,10 @@ export class FindByEmailRepository implements IFindByEmailRepository {
 }
 
 export class DeleteRepository implements IDeleteRepository {
-  async delete(param: string): Promise<IUser | null> {
+  async delete(id: string): Promise<IUser | null> {
     const employee = await prisma().employees.delete({
       where: {
-        employee_id: param,
+        employee_id: id,
       },
     });
     return employee;
@@ -91,10 +90,9 @@ export class DeleteRepository implements IDeleteRepository {
 
 export class FindByTokenRepository implements IFindByTokenRepository {
   async findByToken(token: string): Promise<IUserToken | null> {
-
     const userToken = await prisma().userToken.findFirst({
       where: {
-        token:token,
+        token: token,
       },
     });
     return userToken;

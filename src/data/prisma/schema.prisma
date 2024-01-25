@@ -35,7 +35,7 @@ model Timesheet {
   hours_worked  Int?
   overtime      Int?
   employee_id   String
-  employee      Employees @relation(fields: [employee_id], references: [employee_id])
+  employee      Employees @relation(fields: [employee_id], references: [employee_id], onDelete: Cascade)
 }
 
 model UserToken {
@@ -43,5 +43,5 @@ model UserToken {
   employee_id   String
   token         String    @default(uuid())
   createdAt     DateTime  @default(now())
-  employee      Employees @relation(fields: [employee_id], references: [employee_id])
+  employee      Employees @relation(fields: [employee_id], references: [employee_id], onDelete: Cascade)
 }

@@ -19,7 +19,7 @@ export class DeleteEmployeeService {
           });
         }
       }
-      throw new apiError("erro interno ao deletar", 500);
+      throw new apiError(error.message, 500);
     }
   }
 }

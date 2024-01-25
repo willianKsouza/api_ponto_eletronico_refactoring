@@ -21,7 +21,7 @@ export class LoginEmployeeService {
         { user: JSON.stringify(employeeCredentials) },
         process.env.SECRET as string,
         {
-          expiresIn: 900,
+          expiresIn: 9000,
         }
       );
       return {

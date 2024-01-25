@@ -21,7 +21,7 @@ export class ControllerTimeSheet {
            work_load,
          });
 
-         return res.status(200).json({ data: timeSheetService });
+         return res.status(200).json({timeSheetService });
      } catch (error) {
         return res.status(error.statusCode).json({ data: error.message });
      }

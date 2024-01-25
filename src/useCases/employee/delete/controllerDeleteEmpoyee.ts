@@ -7,7 +7,7 @@ export class ControllerDeleteEmployee {
     try {
       const { id } = req.body;
       const employee = await this.deleteEmployee.execute(id);
-      return res.status(200).json({ data: employee });
+      return res.status(200).json({employee });
     } catch (error) {
       return res.status(error.statusCode).json({ data: error.message });
     }
