@@ -7,5 +7,4 @@ const loginEmployeeService = new LoginEmployeeService(findByEmailRepository);
 const loginEmployeeController = new ControllerLoginEmployee(
   loginEmployeeService
 );
-
 export { loginEmployeeController };

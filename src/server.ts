@@ -7,9 +7,13 @@ import {engine} from "express-handlebars";
 import * as path from "path";
 import  cors  from 'cors'
 import cookieParser from "cookie-parser"
+
 config();
 
+
+
 const app = express();
+
 //Nota: esse midleware evite requisiçoes TRACE para esse servidor(trace method consegue ter acesso aos coockies httpOnly)
 app.use((req, res, next) => {
   const allowedMethods = [
@@ -22,19 +26,22 @@ app.use((req, res, next) => {
     "DELETE",
     "PATCH",
   ];
-
   if (!allowedMethods.includes(req.method)) {
     res.status(405).send(`${req.method} not allowed.`);
   }
-
   next();
 })
+app.use(cookieParser());
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials:true,
+}));
 app.engine("handlebars", engine({
         extname: '.handlebars',
         defaultLayout:false
 }));
-app.use(cors());
-app.use(cookieParser());
+
+
 app.set("view engine", "handlebars");
 app.set("views", path.resolve(__dirname, "./views"));
 app.use(express.urlencoded({ extended: true }));

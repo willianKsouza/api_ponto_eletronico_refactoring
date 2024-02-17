@@ -3,6 +3,7 @@ import { compareSync } from "bcrypt";
 import { IUser } from "../../shared/interfaces/IUser";
 import { apiError } from "../../shared/middlewares/AppError";
 import { sign } from "jsonwebtoken";
+
 export class LoginEmployeeService {
   constructor(private employee: IFindByEmailRepository) {}
   async execute({ email, password }: Pick<IUser, "email" | "password">) {
@@ -10,6 +11,7 @@ export class LoginEmployeeService {
     if (!employeeCredentials) {
       throw new apiError("email incorreto", 404);
     }
+    
     
     const compareHash = compareSync(
       password,
@@ -27,6 +29,8 @@ export class LoginEmployeeService {
       return {
         auth: true,
         token,
+        employee_id:employeeCredentials.employee_id,
+        time_sheet_id:employeeCredentials.last_register_time_sheet
       };
     } else {
       throw new apiError("senha incorreta", 404);

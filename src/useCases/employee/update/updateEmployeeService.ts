@@ -1,12 +1,12 @@
 import { apiError } from "../../../shared/middlewares/AppError";
 import {
-  IFindOneRepository,
+  IFindByIdRepository,
   IUpdateRepository,
 } from "../../../shared/interfaces/IEmployeeRepository";
 import { UpdateDataValidation } from "../../../shared/utils/updateDataValidation";
 
 interface IUpdateEmployee {
-  queryId: string;
+  employee_id: string;
   name_employee?: string;
   function_employee?: string;
   workload_employee?: number;
@@ -16,7 +16,7 @@ interface IUpdateEmployee {
 export class UpdateEmployeeService {
   constructor(
     private employeeRepository: IUpdateRepository,
-    private employee: IFindOneRepository
+    private findEmployeeById: IFindByIdRepository
   ) {}
 
   @UpdateDataValidation()
@@ -24,9 +24,9 @@ export class UpdateEmployeeService {
     try {
       const { email, function_employee, name_employee, workload_employee } =
         data;
-      const employeeExists = await this.employee.findOne(data.queryId);
+      const employeeExists = await this.findEmployeeById.findById(data.employee_id);
       if (employeeExists) {
-      const employee = await this.employeeRepository.update(data.queryId, {
+      const employee = await this.employeeRepository.update(data.employee_id, {
         email,
         function_employee,
         name_employee,

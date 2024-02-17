@@ -12,11 +12,11 @@ export class ControllerUpdateEmployee {
     } = req.body;
 
     try {
-      const queryId = req.params.id;
+      const { employee_id } = req.cookies.securityData;
       
       
       const employee = await this.updateEmployee.execute({
-        queryId,
+        employee_id,
         name_employee,
         function_employee,
         workload_employee,

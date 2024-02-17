@@ -21,7 +21,7 @@ export class UpdateTimeSheetRepository implements ITimeSheetUpdateRepository {
 
 export class FindOneTimeSheetRepository implements IFindOneTimeSheetRepository {
   async findOne(id: string): Promise<ITimesheet | null> {
-    const timesheet = await prisma().timesheet.findUnique({
+    const timesheet = await prisma().timesheet.findFirst({
       where: {
         time_sheet_id: id,
       },
@@ -29,6 +29,7 @@ export class FindOneTimeSheetRepository implements IFindOneTimeSheetRepository {
     return timesheet;
   }
 }
+
 
 export class CreateTimeSheetRepository implements ICreateTimeSheetRepository {
   async create(

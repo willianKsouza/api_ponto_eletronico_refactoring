@@ -3,12 +3,12 @@ import { isAfter, addHours } from "date-fns";
 import { hashSync } from "bcrypt";
 import {
   IFindByTokenRepository,
-  IFindOneRepository,
+  IFindByIdRepository,
   IUpdateRepository,
 } from "../../../../shared/interfaces/IEmployeeRepository";
 export class ResetPasswordService {
   constructor(
-    private employeeRepository: IFindOneRepository,
+    private findByIdRepository: IFindByIdRepository,
     private employeeUpdateRepository: IUpdateRepository,
     private userToken: IFindByTokenRepository
   ) {}
@@ -19,7 +19,7 @@ export class ResetPasswordService {
       if (!usertoken) {
         throw new apiError("token nao encontrado", 500);
       }
-      const user = await this.employeeRepository.findOne(usertoken.employee_id);
+      const user = await this.findByIdRepository.findById(usertoken.employee_id);
       if (!user) {
         throw new apiError("Usuario nao encontrado", 500);
       }

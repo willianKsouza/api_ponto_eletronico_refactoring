@@ -1,15 +1,15 @@
 import {
   UpdateRepository,
-  FindOneRepository,
+  FindByIdRepository,
 } from "../../../data/prisma/repositories/userRepository";
 import { ControllerUpdateEmployee } from "./controllerUpdateEmpoyee";
 import { UpdateEmployeeService } from "./updateEmployeeService";
 
 const updateRepository = new UpdateRepository();
-const findOneRepository = new FindOneRepository();
+const findByRepository = new FindByIdRepository();
 const updateEmployeeService = new UpdateEmployeeService(
   updateRepository,
-  findOneRepository
+  findByRepository
 );
 const updateEmployeeController = new ControllerUpdateEmployee(
   updateEmployeeService

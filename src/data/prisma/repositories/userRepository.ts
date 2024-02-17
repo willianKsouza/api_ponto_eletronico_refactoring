@@ -6,7 +6,7 @@ import {
   IFindByEmailRepository,
   IUpdateRepository,
   IFindCredentialsRepository,
-  IFindOneRepository,
+  IFindByIdRepository,
   IFindByTokenRepository,
   ICreateUserTokenRepository,
 } from "../../../shared/interfaces/IEmployeeRepository";
@@ -55,8 +55,8 @@ export class FindCredentialsRepository implements IFindCredentialsRepository {
     return employee;
   }
 }
-export class FindOneRepository implements IFindOneRepository {
-  async findOne(id: string): Promise<IUser | null> {
+export class FindByIdRepository implements IFindByIdRepository {
+  async findById(id: string): Promise<IUser | null> {
     const employee = await prisma().employees.findUnique({
       where: {
         employee_id: id,

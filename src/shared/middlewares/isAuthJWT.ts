@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import { json } from "stream/consumers";
+
 
 export function isAuthJWT(req: Request, res: Response, next: NextFunction) {
-  const token = req.cookies.token
+  const token = req.cookies.securityData.token
 
   if (!token) {
     return res.status(401).json({ auth: false, message: "No token provided." });

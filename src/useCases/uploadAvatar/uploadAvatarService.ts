@@ -1,6 +1,6 @@
 
 import {
-  IFindOneRepository,
+  IFindByIdRepository,
   IUpdateRepository,
 } from "../../shared/interfaces/IEmployeeRepository";
 import {
@@ -11,7 +11,7 @@ import {
 import { deleteFileServer } from "../../shared/utils/deleteFileServer";
 export class UploadAvatarService {
   constructor(
-    private employee: IFindOneRepository,
+    private findEmployeeById: IFindByIdRepository,
     private saveCloudStorage: IUploadAvatar,
     private getAvatarUrl: IGetAvatarUrl,
     private UpdateEmployee: IUpdateRepository,
@@ -19,7 +19,7 @@ export class UploadAvatarService {
   ) {}
   async execute(id: string, objFile: Express.Multer.File) {
     
-    const employee = await this.employee.findOne(id);
+    const employee = await this.findEmployeeById.findById(id);
     if (employee && employee.avatar_file_name) {
       const saveCloud = await this.saveCloudStorage.uploadFile(objFile);
       const getUrl = await this.getAvatarUrl.getUrl(objFile.filename);

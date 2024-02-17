@@ -13,9 +13,10 @@ export interface IFindCredentialsRepository {
     password,
   }: Pick<IUser, "email" | "password">): Promise<IUser | null>;
 }
-export interface IFindOneRepository {
-  findOne(id: string): Promise<IUser | null>;
+export interface IFindByIdRepository {
+  findById(id: string): Promise<IUser | null>;
 }
+
 export interface IFindAllRepository {
   findAll(): Promise<IUser[] | null>;
 }

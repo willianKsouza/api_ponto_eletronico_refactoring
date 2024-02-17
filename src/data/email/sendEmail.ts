@@ -48,7 +48,5 @@ export class Email implements ISendEmail {
     };
 
     const message = await transport.sendMail(mail);
-    console.log("message sent: %s", message.messageId);
-    console.log("URL", getTestMessageUrl(message));
   }
 }

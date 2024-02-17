@@ -8,6 +8,7 @@ export interface IUser {
   workload_employee: number;
   email: string;
   password: string;
+  last_register_time_sheet?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   deleted_at?: Date | string | null;

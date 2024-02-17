@@ -8,5 +8,6 @@ export interface ITimesheet {
   work_load: number;
   hours_worked?: number | null;
   overtime?: number | null;
+  createdAt?: Date | string;
   employee_id: string;
 }
