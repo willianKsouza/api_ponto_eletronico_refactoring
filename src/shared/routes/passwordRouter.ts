@@ -14,7 +14,7 @@ passwordRouter.get("/forgot", (req, res) =>
 passwordRouter.post("/reset", (req, res) =>
   controllerResetPassword.reset(req, res)
 );
-passwordRouter.get("/reset/:uuid", isValidUUID, (req, res) =>
+passwordRouter.get("/reset/:uuid", isValidUUID,(req, res) =>
   controllerFormResetPassword.formReset(req, res)
 );
 export { passwordRouter };

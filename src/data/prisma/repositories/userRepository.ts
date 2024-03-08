@@ -9,9 +9,11 @@ import {
   IFindByIdRepository,
   IFindByTokenRepository,
   ICreateUserTokenRepository,
+  IFindEmployeeByFilterRepository
 } from "../../../shared/interfaces/IEmployeeRepository";
 import { prisma } from "../connectDb";
 import { IUserToken } from "../../../shared/interfaces/IuserToken";
+import { IFilterEmployee } from "../../../shared/interfaces/IFilterEmployee";
 
 export class CreateRepository implements ICreateRepository {
   async create(param: Omit<IUser, "employee_id">): Promise<IUser | null> {
@@ -35,7 +37,33 @@ export class UpdateRepository implements IUpdateRepository {
 export class FindAllRepository implements IFindAllRepository {
   async findAll(): Promise<IUser[] | null> {
     const employee = await prisma().employees.findMany();
+    return employee;
+  }
+}
 
+//https://www.prisma.io/docs/orm/prisma-client/special-fields-and-types/null-and-undefined
+//TROCAR PARA OR operator no prisma
+export class FindByFilterRepository implements IFindEmployeeByFilterRepository  {
+  async findByFilter(data: IFilterEmployee): Promise<IUser[] | null> {
+    let where: any = {}
+
+    if (data.name_employee) {
+      where.name_employee = { startsWith:data.name_employee }
+    }
+    if (data.email) {
+      where.email = { startsWith:data.email }
+    }
+    if (data.function_employee) {
+      where.function_employee = { startsWith:data.function_employee }
+    }
+    if (data.createdAt) {
+      where.createdAt = { contains:data.createdAt }
+    }
+    if (data.workload_employee) {
+      where.workload_employee = { contains:data.workload_employee }
+    }
+
+    const employee = await prisma().employees.findMany({ where });
     return employee;
   }
 }

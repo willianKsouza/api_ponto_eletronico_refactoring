@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
-import { FindByEmailRepository } from "../../data/prisma/repositories/userRepository";
+import { FindByIdRepository } from "../../data/prisma/repositories/userRepository";
 import { apiError } from "./AppError";
 
 export async function isAuthADM(
@@ -9,8 +8,8 @@ export async function isAuthADM(
   next: NextFunction
 ) {
   try {
-    const emailAdm = req.headers["email"] as string;
-    const isAdm = await new FindByEmailRepository().findByEmail(emailAdm);
+    const idAdm = req.cookies.securityData.employee_id;
+    const isAdm = await new FindByIdRepository().findById(idAdm);
     if (isAdm?.function_employee == "admin") {
       next();
     }

@@ -85,7 +85,7 @@ export class TimeSheetService {
                     }
                   );
                 }
-              const homem = await this.employeeUpdateRepository.update(employee_id, {
+              await this.employeeUpdateRepository.update(employee_id, {
                 last_register_time_sheet: 'null'
               })
               return employeeTimeSheet;

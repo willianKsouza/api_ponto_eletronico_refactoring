@@ -14,7 +14,7 @@ export class DeleteEmployeeService {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === "P2025") {
           throw JSON.stringify({
-            erro: "funcionario nao nao existe",
+            erro: "funcionario nao existe",
             statusCode: 400,
           });
         }

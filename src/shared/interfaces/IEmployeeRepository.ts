@@ -1,3 +1,4 @@
+import { IFilterEmployee } from "./IFilterEmployee";
 import { IUser } from "./IUser";
 import { IUserToken } from "./IuserToken";
 
@@ -19,6 +20,9 @@ export interface IFindByIdRepository {
 
 export interface IFindAllRepository {
   findAll(): Promise<IUser[] | null>;
+}
+export interface IFindEmployeeByFilterRepository {
+  findByFilter(data: IFilterEmployee): Promise<IUser[] | null>;
 }
 export interface IUpdateRepository {
   update(id: string, param: Partial<IUser>): Promise<IUser | null>;

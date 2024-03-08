@@ -8,13 +8,13 @@ export class ControllerLoginEmployee {
   async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      const { auth, token, employee_id, time_sheet_id } = await this.loginEmployee.execute({
+      const { auth, token, employee_id, time_sheet_id, function_employee } = await this.loginEmployee.execute({
         email,
         password,
       });
 
       return res
-        .cookie("securityData", {auth, token, employee_id, time_sheet_id}, {
+        .cookie("securityData", {auth, token, employee_id, time_sheet_id, function_employee}, {
           httpOnly: true,
           secure: true,
           sameSite:'none'

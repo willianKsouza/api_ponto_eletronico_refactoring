@@ -16,8 +16,6 @@ export function isAuthJWT(req: Request, res: Response, next: NextFunction) {
         .json({ auth: false, message: "Failed to authenticate token." });
     }
     if (decoded) {
-      const { employee_id } = JSON.parse(decoded.user);
-      req.body.employee_id = employee_id;
       next();
     }
   });

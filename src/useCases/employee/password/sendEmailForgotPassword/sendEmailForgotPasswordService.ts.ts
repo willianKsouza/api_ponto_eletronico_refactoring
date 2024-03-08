@@ -4,7 +4,7 @@ import {
   IFindByEmailRepository,
 } from "../../../../shared/interfaces/IEmployeeRepository";
 import { ISendEmail } from "../../../../shared/interfaces/ISendEmail";
-import { template } from "handlebars";
+
 export class SendForgotEmailPasswordService {
   constructor(
     private employeeRepository: IFindByEmailRepository,

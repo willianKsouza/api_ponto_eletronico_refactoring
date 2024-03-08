@@ -9,7 +9,7 @@ export class CreateEmployeeService {
   constructor(private employeeRepository: ICreateRepository) {}
   @CreateDataValidation()
   async execute(data: Omit<IUser, "employee_id">) {
-
+   
     const saltRounds = 10;
     const hash = hashSync(data.password, saltRounds);
     try {
@@ -27,6 +27,8 @@ export class CreateEmployeeService {
             statusCode: 400,
           });
         }
+        console.log(error);
+        
       }
       throw new apiError("erro interno, create service", 500);
     }

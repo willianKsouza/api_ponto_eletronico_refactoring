@@ -29,7 +29,11 @@ export class ControllerTimeSheet {
       if (typeof timeSheetService == 'string') {
           cookies.time_sheet_id = timeSheetService 
       }
+      if (type_marking == 'out_time') {
+        cookies.time_sheet_id = ''
+      }
       return res
+
         .cookie("securityData", cookies, {
           httpOnly: true,
           secure: true,

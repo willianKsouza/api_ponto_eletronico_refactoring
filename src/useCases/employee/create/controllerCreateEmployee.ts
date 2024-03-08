@@ -3,9 +3,10 @@ import { CreateEmployeeService } from "./createEmployeeService";
 
 
 export class ControllerCreateEmployee {
-  constructor(private createEmployee: CreateEmployeeService) {}
+  constructor(private createEmployee: CreateEmployeeService) { }
 
   async create(req: Request, res: Response): Promise<Response> {
+
     const {
       name_employee,
       function_employee,
@@ -22,13 +23,13 @@ export class ControllerCreateEmployee {
         email,
         password,
       });
-     
-      
-      return res.status(201).json({Employee });
+
+
+      return res.status(201).json({ Employee });
     } catch (error) {
 
-      
-      return res.status(error.statusCode).json({ data: error.message });
+
+      return res.status(error.statusCode).json({ data:error.message });
     }
   }
 }
