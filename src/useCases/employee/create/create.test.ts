@@ -1,23 +1,15 @@
-import { randomUUID } from "crypto";
-import { ICreateRepository } from "../../../shared/interfaces/IEmployeeRepository"
-import { IUser } from "../../../shared/interfaces/IUser";
+
+
 import { CreateEmployeeService } from "./createEmployeeService"
 import { CreateRepository } from "../../../data/prisma/repositories/userRepository";
-import { apiError } from "../../../shared/middlewares/AppError";
+
 
 
 
 jest.mock("../../../data/prisma/repositories/userRepository")
 const createRepositoryMock = CreateRepository as jest.Mock<CreateRepository>
 
-// const IUser = {
-//   name_employee: 'naruto uzumaki',
-//   function_employee: 'hokage',
-//   workload_employee: 8,
-//   email: 'naruto@gmail.com',
-//   password: '222'
 
-// }
 
 describe('useCase Create testagem de inputs',() => {
   let IUser: any
